@@ -39,7 +39,7 @@ class OnboardingPage extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppSizes.defaultSpace)
-              .copyWith(bottom: AppSizes.lg * 2),
+              .copyWith(bottom: AppSizes.appBarHeight * 3),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.end,
@@ -51,20 +51,20 @@ class OnboardingPage extends StatelessWidget {
               const SizedBox(height: AppSizes.spaceBtwItems),
               Text(
                 headline,
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineLarge!
-                    .copyWith(color: AppColor.white, fontSize: AppSizes.lg * 2),
+                style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                      color: AppColor.white,
+                      fontSize: AppSizes.md * 3,
+                    ),
               ),
               const SizedBox(height: AppSizes.spaceBtwItems),
               Text(
                 description,
                 style: Theme.of(context)
                     .textTheme
-                    .bodyMedium!
-                    .copyWith(color: AppColor.white),
+                    .bodyLarge!
+                    .copyWith(color: AppColor.white, fontSize: AppSizes.md),
               ),
-              const SizedBox(height: AppSizes.appBarHeight * 2),
+              const SizedBox(height: AppSizes.spaceBtwItems * 3),
             ],
           ),
         ),

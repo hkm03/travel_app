@@ -13,7 +13,7 @@ class SplashController extends GetxController {
     Timer(
       const Duration(seconds: 5),
       () => Navigator.of(Get.context!)
-          .pushReplacementNamed(RouteNames.onBoardingScreen),
+          .pushReplacementNamed(RouteNames.loginScreen),
     );
   }
 }

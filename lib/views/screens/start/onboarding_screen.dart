@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:travel_app/data/controller/start/onboarding_controller.dart';
 import 'package:travel_app/routes/route_names.dart';
 import 'package:travel_app/utils/assets.dart';
 import 'package:travel_app/utils/colors.dart';
 import 'package:travel_app/utils/sizes.dart';
-import 'package:travel_app/views/widgets/onboarding/onboarding_indicator.dart';
 import 'package:travel_app/views/widgets/onboarding/onboarding_page.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -53,58 +53,69 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ],
           ),
           Positioned(
-            bottom: AppSizes.md,
+            bottom: AppSizes.defaultSpace,
             left: AppSizes.defaultSpace,
             right: AppSizes.defaultSpace,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const OnboardingIndicator(),
-                const SizedBox(height: AppSizes.lg * 2),
+                SmoothPageIndicator(
+                  controller: onboardingController.pageController,
+                  count: 3,
+                  effect: const SlideEffect(
+                      dotHeight: AppSizes.xs,
+                      dotWidth: AppSizes.buttonWidth - 15,
+                      activeDotColor: AppColor.white,
+                      type: SlideType.slideUnder),
+                ),
+                const SizedBox(
+                  height: AppSizes.appBarHeight * 2,
+                ),
                 _currentPage != 2
-                    ? ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          fixedSize: const Size(AppSizes.buttonWidth * 3,
-                              AppSizes.appBarHeight - 10),
-                          backgroundColor: AppColor.secondary,
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(AppSizes.borderRadiusLg),
+                    ? SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColor.secondary,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  AppSizes.borderRadiusLg),
+                            ),
                           ),
-                        ),
-                        onPressed: () {
-                          onboardingController.pageController.nextPage(
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.easeInOut);
-                        },
-                        child: Text(
-                          "Next",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(color: AppColor.black),
+                          onPressed: () {
+                            onboardingController.pageController.nextPage(
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.easeInOut);
+                          },
+                          child: Text(
+                            "Next",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall!
+                                .copyWith(color: AppColor.black),
+                          ),
                         ),
                       )
-                    : ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          fixedSize: const Size(AppSizes.buttonWidth * 3,
-                              AppSizes.appBarHeight - 10),
-                          backgroundColor: AppColor.secondary,
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(AppSizes.borderRadiusLg),
+                    : SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColor.secondary,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  AppSizes.borderRadiusLg),
+                            ),
                           ),
-                        ),
-                        onPressed: () {
-                          Navigator.of(Get.context!)
-                              .pushReplacementNamed(RouteNames.loginScreen);
-                        },
-                        child: Text(
-                          "Get Started",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(color: AppColor.black),
+                          onPressed: () {
+                            Navigator.of(Get.context!)
+                                .pushReplacementNamed(RouteNames.loginScreen);
+                          },
+                          child: Text(
+                            "Get Started",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall!
+                                .copyWith(color: AppColor.black),
+                          ),
                         ),
                       ),
               ],
