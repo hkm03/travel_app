@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:travel_app/data/controller/authentication/login_controller.dart';
+import 'package:travel_app/routes/route_names.dart';
 import 'package:travel_app/utils/colors.dart';
 import 'package:travel_app/utils/sizes.dart';
 
@@ -42,7 +43,7 @@ class _LoginFormState extends State<LoginForm> {
                   color: AppColor.darkGrey, fontSize: AppSizes.md - 2),
             ),
           ),
-          const SizedBox(height: AppSizes.spaceBtwInputFields * 2),
+          const SizedBox(height: AppSizes.spaceBtwInputFields),
           Obx(
             () => TextFormField(
               obscureText: loginController.isPasswordVisible.value,
@@ -76,14 +77,13 @@ class _LoginFormState extends State<LoginForm> {
               ),
             ),
           ),
-          const SizedBox(height: AppSizes.spaceBtwItems),
+          const SizedBox(height: AppSizes.spaceBtwItems - 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
                   Checkbox(
-                    
                     value: loginController.checkBox.value,
                     onChanged: (value) {
                       setState(
@@ -97,7 +97,6 @@ class _LoginFormState extends State<LoginForm> {
                       borderRadius:
                           BorderRadius.circular(AppSizes.borderRadiusSm),
                     ),
-                    
                   ),
                   Text(
                     "Remember me",
@@ -109,7 +108,10 @@ class _LoginFormState extends State<LoginForm> {
                 ],
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(Get.context!)
+                      .pushReplacementNamed(RouteNames.forgotPasswordScreen);
+                },
                 child: Text(
                   "Forgot password",
                   style: Theme.of(context).textTheme.displaySmall!.copyWith(
@@ -119,6 +121,27 @@ class _LoginFormState extends State<LoginForm> {
                 ),
               ),
             ],
+          ),
+          const SizedBox(height: AppSizes.spaceBtwItems),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                elevation: 0,
+                backgroundColor: AppColor.secondary,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppSizes.borderRadiusLg),
+                ),
+              ),
+              onPressed: () {},
+              child: Text(
+                "Sign In",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(fontWeight: FontWeight.bold),
+              ),
+            ),
           ),
         ],
       ),

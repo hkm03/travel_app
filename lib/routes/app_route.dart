@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travel_app/routes/route_names.dart';
+import 'package:travel_app/views/screens/authentication/forgot_password_screen.dart';
 import 'package:travel_app/views/screens/authentication/login_screen.dart';
 import 'package:travel_app/views/screens/start/onboarding_screen.dart';
 import 'package:travel_app/views/screens/start/splash_screen.dart';
@@ -21,6 +22,11 @@ class AppRouter {
       case RouteNames.loginScreen:
         return MaterialPageRoute(
           builder: (_) => const LoginScreen(),
+        );
+
+      case RouteNames.forgotPasswordScreen:
+        return MaterialPageRoute(
+          builder: (_) => const ForgotPassword(),
         );
         
 
